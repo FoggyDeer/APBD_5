@@ -56,4 +56,36 @@ public class AnimalsRepository : IAnimalsRepository
         var affectedCount = cmd.ExecuteNonQuery();
         return affectedCount;
     }
+    
+    public int UpdateAnimal(Animal animal, int idAnimal)
+    {
+        using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        con.Open();
+        
+        using var cmd = new SqlCommand();
+        cmd.Connection = con;
+        cmd.CommandText = "UPDATE Animals_DB.Animal SET Name=@Name, Description=@Description, Category=@Category, Area=@Area WHERE IdAnimal = @IdAnimal";
+        cmd.Parameters.AddWithValue("@IdStudent", animal.Name);
+        cmd.Parameters.AddWithValue("@FirstName", animal.Description);
+        cmd.Parameters.AddWithValue("@LastName", animal.Category);
+        cmd.Parameters.AddWithValue("@Email", animal.Area);
+        cmd.Parameters.AddWithValue("@IdAnimal", idAnimal);
+        
+        var affectedCount = cmd.ExecuteNonQuery();
+        return affectedCount;
+    }
+
+    public int DeleteAnimal(int idAnimal)
+    {
+        using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+        con.Open();
+        
+        using var cmd = new SqlCommand();
+        cmd.Connection = con;
+        cmd.CommandText = "DELETE FROM Animals_DB.Animal WHERE IdAnimal = @IdAnimal";
+        cmd.Parameters.AddWithValue("@IdAnimal", idAnimal);
+        
+        var affectedCount = cmd.ExecuteNonQuery();
+        return affectedCount;
+    }
 }

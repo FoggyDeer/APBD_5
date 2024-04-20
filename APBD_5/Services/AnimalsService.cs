@@ -22,4 +22,14 @@ public class AnimalsService : IAnimalsService
     {
         return _animalsRepository.CreateAnimal(animal);
     }
+
+    public int UpdateAnimal(Animal animal, int idAnimal)
+    {
+        return _animalsRepository.UpdateAnimal(animal, idAnimal);
+    }
+
+    public int DeleteAnimal(int idAnimal)
+    {
+        return _animalsRepository.DeleteAnimal(idAnimal);
+    }
 }
