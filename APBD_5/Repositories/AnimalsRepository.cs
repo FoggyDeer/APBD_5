@@ -1,4 +1,3 @@
-using System.Data.Common;
 using System.Data.SqlClient;
 using APBD_5.Models;
 
@@ -50,6 +49,8 @@ public class AnimalsRepository : IAnimalsRepository
         cmd.Connection = con;
         cmd.CommandText = "INSERT INTO Animals_DB.Animal(Name, Description, Category, Area) VALUES(@Name, @Description, @Category, @Area)";
         cmd.Parameters.AddWithValue("@Name", animal.Name);
+        if (animal.Description == null)
+            animal.Description = "";
         cmd.Parameters.AddWithValue("@Description", animal.Description);
         cmd.Parameters.AddWithValue("@Category", animal.Category);
         cmd.Parameters.AddWithValue("@Area", animal.Area);
@@ -67,6 +68,8 @@ public class AnimalsRepository : IAnimalsRepository
         cmd.Connection = con;
         cmd.CommandText = "UPDATE Animals_DB.Animal SET Name=@Name, Description=@Description, Category=@Category, Area=@Area WHERE IdAnimal = @IdAnimal";
         cmd.Parameters.AddWithValue("@Name", animal.Name);
+        if (animal.Description == null)
+            animal.Description = "";
         cmd.Parameters.AddWithValue("@Description", animal.Description);
         cmd.Parameters.AddWithValue("@Category", animal.Category);
         cmd.Parameters.AddWithValue("@Area", animal.Area);
