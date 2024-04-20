@@ -6,6 +6,8 @@ namespace APBD_5.Models;
 
 public class Animal
 {
+    public int IdAnimal { get; internal set; }
+
     [Required]
     [MaxLength(200)]
     public string Name { get; set; }
@@ -17,4 +19,9 @@ public class Animal
     [Required]
     [MaxLength(200)]
     public string Area { get; set; }
+
+    public void SetIdAnimal(int id)
+    {
+        IdAnimal = id;
+    }
 }

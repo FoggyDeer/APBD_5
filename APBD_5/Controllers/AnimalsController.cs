@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace APBD_5.Controllers;
 
 
-[Route("api/[controller]")]
+[Route("api/animals")]
 [ApiController]
 public class AnimalsController : ControllerBase
 {
@@ -43,7 +43,7 @@ public class AnimalsController : ControllerBase
     {
         var affectedCount = _animalsService.UpdateAnimal(animal, idAnimal);
         if (affectedCount == 0)
-            return NotFound("Animal with id " + idAnimal + " not found");
+            return NotFound($"Animal with id {idAnimal} not found");
         return NoContent();
     }
     
@@ -52,7 +52,7 @@ public class AnimalsController : ControllerBase
     {
         var affectedCount = _animalsService.DeleteAnimal(idAnimal);
         if (affectedCount == 0)
-            return NotFound("Animal with id " + idAnimal + " not found");
+            return NotFound($"Animal with id {idAnimal} not found");
         return NoContent();
     }
 }

@@ -29,6 +29,7 @@ public class AnimalsRepository : IAnimalsRepository
         {
             var animal = new Animal
             {
+                IdAnimal = (int)dr["IdAnimal"],
                 Name = dr["Name"].ToString(),
                 Description = dr["Description"].ToString(),
                 Category = dr["Category"].ToString(),
